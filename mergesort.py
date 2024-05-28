@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Funktion zum Zuweisen eines Werts von einer Liste zu einer anderen
+
 def assignment(new_list, i, old_list, j):
     """
     Diese Funktion weist den Wert an Position j in old_list der Position i in new_list zu.
@@ -13,7 +14,7 @@ def assignment(new_list, i, old_list, j):
     """
     new_list[i] = old_list[j]
 
-# Funktion zum Sortieren einer Liste mit dem Merge-Sort-Algorithmus
+
 def merge_sort(list_to_sort_by_merge):
     """
     Diese Funktion sortiert eine Liste in-place mit dem Merge-Sort-Algorithmus.
@@ -54,30 +55,34 @@ def merge_sort(list_to_sort_by_merge):
         list_to_sort_by_merge[current_index] = left_list_part[left_index]
         left_index += 1
         current_index += 1
+    
+    # If there are remaining elements in right list, add them
+    while right_index < len(right_list_part):
+        list_to_sort_by_merge[current_index] = right_list_part[right_index]
+        right_index += 1
+        current_index += 1
 
 
 # Dieser Code wird nur ausgeführt, wenn dieses Skript direkt ausgeführt wird und nicht, wenn es als Modul importiert wird
 if __name__ == "__main__": 
-    # Initialisieren der zu sortierenden Werte
-    y_values = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-    # Erstellen einer Liste von Indizes für die Werte
-    x_values = range(len(y_values))
+    unsorted_values = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+    sorted_values = unsorted_values.copy()
+    merge_sort(sorted_values)
+
+    x_values = np.arange(len(unsorted_values))
+
+    # set title and labels
+    plt.title("Unsorted vs Sorted Values")
+    plt.xlabel("Index")
+    plt.ylabel("Value")
+
+    # use grid
+    plt.grid()
+
+    # show plot (x values offset by 0.2 for two bars next to each other; width of bars: 0.4)
+    plt.bar(x_values - 0.2, unsorted_values, 0.4, label='Unsorted')
+    plt.bar(x_values + 0.2, sorted_values, 0.4, label='Sorted')
+
+    plt.legend()
+    plt.show()
     
-    # Erstellen eines Plots der unsortierten Werte
-    plt.plot(x_values, y_values)
-    plt.title("Unsorted values")  
-    plt.xlabel("Index")  
-    plt.ylabel("Value") 
-    plt.grid()  
-    plt.show()  
-    
-    # Sortieren der Werte mit dem Merge-Sort-Algorithmus
-    merge_sort(y_values)
-    
-    # Erstellen eines Plots der sortierten Werte
-    plt.plot(x_values, y_values)
-    plt.title("Sorted values") 
-    plt.xlabel("Index")  
-    plt.ylabel("Value") 
-    plt.grid() 
-    plt.show() 
