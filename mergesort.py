@@ -17,13 +17,13 @@ def assignment(new_list, i, old_list, j):
 
 def merge_sort(list_to_sort_by_merge):
     """
-    Diese Funktion sortiert eine Liste in-place mit dem Merge-Sort-Algorithmus.
+    Diese Funktion sortiert eine Liste in aufsteigender Reihenfolge mit dem Merge-Sort-Algorithmus.
 
     Parameters:
     list_to_sort_by_merge (list): Die zu sortierende Liste.
     """
     # Wenn die Liste nur ein Element oder kein Element enthält, ist sie bereits sortiert
-    if(len(list_to_sort_by_merge) <= 1):
+    if len(list_to_sort_by_merge) <= 1:
         return
     
     # Teilen der Liste in zwei Hälften
@@ -35,7 +35,7 @@ def merge_sort(list_to_sort_by_merge):
     merge_sort(left_list_part)
     merge_sort(right_list_part)
 
-    # Initialisieren der Indizes für die linke Liste, die rechte Liste und die Gesamtliste
+    # Initialisieren der Indizes für die linke und die rechte Liste sowie dem aktuellen Index
     left_index = 0
     right_index = 0
     current_index = 0
@@ -56,14 +56,14 @@ def merge_sort(list_to_sort_by_merge):
         left_index += 1
         current_index += 1
     
-    # If there are remaining elements in right list, add them
+    # Hinzufügen der restlichen Elemente der rechten Liste, falls vorhanden
     while right_index < len(right_list_part):
         list_to_sort_by_merge[current_index] = right_list_part[right_index]
         right_index += 1
         current_index += 1
 
 
-# Dieser Code wird nur ausgeführt, wenn dieses Skript direkt ausgeführt wird und nicht, wenn es als Modul importiert wird
+# Dieser Code wird nur ausgeführt, wenn das file direkt ausgeführt wird und nicht, wenn es als Modul importiert wird
 if __name__ == "__main__": 
     unsorted_values = [54, 26, 93, 17, 77, 31, 44, 55, 20]
     sorted_values = unsorted_values.copy()
